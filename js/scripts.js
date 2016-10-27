@@ -1,81 +1,202 @@
 var symbols = ["I", "V", "X", "L", "C", "D", "M"];
 var values = [1, 5, 10, 50, 100, 500, 1000];
-var inputValues = [];
-var finalValues = [];
 
-var toUpper = function(string) {
-  return string.toUpperCase();
-};
+function oneDigit(userInput) {
+  if (userInput === 1) {
+  var userInput = "I";
+    return userInput;
+  }
+  if (userInput === 2) {
+    var userInput = "II";
+    return userInput;
+  }
+  if (userInput === 3) {
+    var userInput = "III";
+    return userInput;
+  }
+  if (userInput === 4) {
+    var userInput = "IV";
+    return userInput;
+  }
+  if (userInput === 5) {
+    var userInput = "V";
+    return userInput;
+  }
+  if (userInput === 6) {
+    var userInput = "VI";
+    return userInput;
+  }
+  if (userInput === 7) {
+    var userInput = "VII";
+    return userInput;
+  }
+  if (userInput === 8) {
+    var userInput = "VIII";
+    return userInput;
+  }
+  if (userInput === 9) {
+    var userInput = "IX";
+    return userInput;
+  }
+  if (userInput === 0) {
+    var userInput = "";
+    return userInput;
+  }
+}
 
-var getValue = function(letter) {
-  var findSymbol = symbols.indexOf(letter);
-  if (findSymbol > -1) {
-    return letter = values[findSymbol];
+function twoDigits(userInput) {
+  if (userInput === 1) {
+    var userInput = "X";
+    return userInput;
+  }
+  if (userInput === 2) {
+    var userInput = "XX";
+    return userInput;
+  }
+  if (userInput === 3) {
+    var userInput = "XXX";
+    return userInput;
+  }
+  if (userInput === 4) {
+    var userInput = "XL";
+    return userInput;
+  }
+  if (userInput === 5) {
+    var userInput = "L";
+    return userInput;
+  }
+  if (userInput === 6) {
+    var userInput = "LX";
+    return userInput;
+  }
+  if (userInput === 7) {
+    var userInput = "LXX";
+    return userInput;
+  }
+  if (userInput === 8) {
+    var userInput = "LXXX";
+    return userInput;
+  }
+  if (userInput === 9) {
+    var userInput = "XC";
+    return userInput;
+  }
+  if (userInput === 0) {
+    var userInput = "";
+    return userInput;
+  }
+}
+
+function threeDigits(userInput) {
+  if (userInput === 1) {
+    var userInput = "C";
+    return userInput;
+  }
+  if (userInput === 2) {
+    var userInput = "CC";
+    return userInput;
+  }
+  if (userInput === 3) {
+    var userInput = "CCC";
+    return userInput;
+  }
+  if (userInput === 4) {
+    var userInput = "CD";
+    return userInput;
+  }
+  if (userInput === 5) {
+    var userInput = "D";
+    return userInput;
+  }
+  if (userInput === 6) {
+    var userInput = "DC";
+    return userInput;
+  }
+  if (userInput === 7) {
+    var userInput = "DC";
+    return userInput;
+  }
+  if (userInput === 8) {
+    var userInput = "DCCC";
+    return userInput;
+  }
+  if (userInput === 9) {
+    var userInput = "CM";
+    return userInput;
+  }
+  if (userInput === 0) {
+    var userInput = "";
+    return userInput;
+  }
+}
+
+function fourDigits(userInput) {
+  if (userInput === 1) {
+    var userInput = "M";
+    return userInput;
+  }
+  if (userInput === 2) {
+    var userInput = "MM";
+    return userInput;
+  }
+  if (userInput === 3) {
+    var userInput = "MMM";
+    return userInput;
+  }
+  if (userInput === 0) {
+    var userInput = "";
+    return userInput;
+  }
+}
+
+function combineDigit(input, length) {
+  if(length === 4) {
+    var thousands = parseInt(input.charAt(0));
+    var hundreds = parseInt(input.charAt(1));
+    var tens = parseInt(input.charAt(2));
+    var one = parseInt(input.charAt(3));
+    return fourDigits(thousands) + threeDigits(hundreds) + twoDigits(tens) + oneDigit(one);
+  }
+  if(length === 3) {
+    var hundreds = parseInt(input.charAt(0));
+    var tens = parseInt(input.charAt(1));
+    var one = parseInt(input.charAt(2));
+    return threeDigits(hundreds) + twoDigits(tens) + oneDigit(one);
+  }
+  if(length === 2) {
+    var tens = parseInt(input.charAt(0));
+    var one = parseInt(input.charAt(1));
+    return twoDigits(tens) + oneDigit(one);
+  }
+  if(length === 1) {
+    var one = parseInt(input.charAt(0));
+    return oneDigit(one);
+  }
+}
+
+function numberValidation(number) {
+  if (parseInt(number) > 0 && parseInt(number) < 3999) {
+    return true;
   } else {
-    alert("Invalid input, please try again.");
+    return false;
   }
-};
+}
 
-// var addSymbol = function(number1, number2) {
-//   var addResult = number1 + number2;
-//   console.log(addResult, typeof(addResult));
-//   return addResult;
-// }
-
-var makeValueArray = function(string) {
-  for (var i = 0; i < string.length; i++) {
-    inputValues.push(getValue(string.charAt(i)));
-  }
-};
-
-var calculateValueArray = function(array) {
-  for (var i = 0; i < array.length; i++) {
-    var a = array[i];
-    var b;
-    var c;
-    if ((i + 1) < array.length) {
-      b = array[i + 1];
-    }
-    if ((i + 2) < array.length) {
-      c = array[i + 2];
-    }
-    console.log(i + " / " + a + " / " +  b + " / " +  c  + " / " + finalValues);
-
-    if ($.isNumeric(a) && $.isNumeric(b)) {
-      if (a >= b) {
-        if ($.isNumeric(c)) {
-          if (b < c) {
-            finalValues.push(a - b);
-          }
-        } else {
-          finalValues.push(a + b);
-        }
-      } else if (a < b) {
-        finalValues.push(b - a);
-      }
-    } else {
-        finalValues.push(a);
-    }
-  }
-  console.log(finalValues);
+function getSymbol(number) {
+  var getIndex = values.indexOf(number);
+  var symbol = symbols[getIndex];
+  return symbol;
 }
 
 $(document).ready(function() {
-  $("#romannumeral").submit(function(event) {
-    inputValues = [];
-    finalValues = [];
-    var getInput = $("#symbol").val();
-    // var firstChar = getInput.charAt(0);
-    // var secondChar = getInput.charAt(1);
-    // var input1 = toUpper(firstChar);
-    // var input2 = toUpper(secondChar);
-    // // $("#output").text(getValue(input));
-    // var inputValue = getValue(input1) + getValue(input2);;
-    // $("#output").text(inputValue);
-    makeValueArray(getInput);
-    calculateValueArray(inputValues);
-    $("#output").text(finalValues);
-
+  $("#number").submit(function(event) {
     event.preventDefault();
+    var input = $("#value").val();
+    var lengthOfInput = input.length;
+    if (numberValidation(input) === true) {
+      $("#output").text(combineDigit(input, lengthOfInput));
+    } else {
+      alert("Please enter a valid number");
+    }
   });
 });

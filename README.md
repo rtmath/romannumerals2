@@ -1,12 +1,13 @@
-- define each roman numeral's numeric value
-- values from each roman numeral are added
-- if there would be three or more of the same symbol in a row, subtraction is used instead
-- ones, tens, hundreds and thousands must be seperate
-- cannot count higher than 3,999
+
+* verify user input is a number and within appropriate range
+* range is between 0 and 3,999
+* define each roman numeral's numeric value
+* values from each roman numeral are added
+* ones, tens, hundreds and thousands must be separate
 
 Input = Output
-IX = 9
-XIII =  13
-XCIV = 94
-LXXXIV = 84
-XLIV = 44
+9 = IX
+13 = XIII
+94 = XCIV
+84 = LXXXIV
+44 = XLIV
